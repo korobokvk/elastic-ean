@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import * as _ from 'lodash';
+import { DialogService } from "../dialog.service";
+
 
 interface usersDataInterface {
   id: string,
@@ -21,8 +23,10 @@ interface usersDataInterface {
 })
 export class TableComponent implements OnInit {
   private userData: Array<usersDataInterface>;
+  public result: any;
 
-  constructor(private _dataService: DataService) {
+
+  constructor(private _dataService: DataService, private dialogsService: DialogService) {
     this.userData = [];
   }
 
@@ -48,7 +52,10 @@ export class TableComponent implements OnInit {
     })
   }
 
-  private delete(id) {
+  private editUser(id) {
+   // this._dataService
+  }
+  private deleteUser(id) {
     this._dataService.deleteData(id).subscribe(status => {
       if(status === 'OK') {
         this.userData = _.cloneDeep(this.userData.filter(item => {
@@ -57,4 +64,10 @@ export class TableComponent implements OnInit {
       }
     })
   }
+
+  // public openDialog() {
+  //   this.dialogsService
+  //     .confirm('Confirm Dialog', 'Are you sure you want to do this?')
+  //     .subscribe(res => this.result = res);
+  // }
 }
