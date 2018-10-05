@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../data.service";
 
 @Component({
   selector: 'app-dialog',
@@ -22,7 +23,10 @@ export class DialogComponent implements OnInit {
     this.visibleAnimate = false;
     setTimeout(() => this.visible = false, 300);
   }
+  public submitUser(data) {
+    console.log(data.value)
 
+  }
   public onContainerClicked(event: MouseEvent): void {
     if ((<HTMLElement>event.target).classList.contains('modal')) {
       this.hide();

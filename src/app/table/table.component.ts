@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import * as _ from 'lodash';
-import { DialogService } from "../dialog.service";
+import {FormGroup, FormBuilder, FormControl} from "@angular/forms"
 
 
 interface usersDataInterface {
@@ -23,15 +23,25 @@ interface usersDataInterface {
 })
 export class TableComponent implements OnInit {
   private userData: Array<usersDataInterface>;
-  public result: any;
+  public userForm: FormGroup;
+  public id: string;
 
 
-  constructor(private _dataService: DataService, private dialogsService: DialogService) {
+  constructor(private _dataService: DataService, private fb: FormBuilder) {
     this.userData = [];
+
   }
 
   ngOnInit() {
     this.getData();
+    this.userForm = this.fb.group({
+      userName: new FormControl(null),
+      userSurname: new FormControl(null),
+      userEmail: new FormControl(null),
+      phone: new FormControl(null),
+      dateOfBirth: new FormControl(null),
+      id: new FormControl()
+    })
   }
 
   private getData() {
@@ -53,7 +63,8 @@ export class TableComponent implements OnInit {
   }
 
   private editUser(id) {
-   // this._dataService
+    this.userForm.controls['id'].setValue(id);
+
   }
   private deleteUser(id) {
     this._dataService.deleteData(id).subscribe(status => {
@@ -64,10 +75,4 @@ export class TableComponent implements OnInit {
       }
     })
   }
-
-  // public openDialog() {
-  //   this.dialogsService
-  //     .confirm('Confirm Dialog', 'Are you sure you want to do this?')
-  //     .subscribe(res => this.result = res);
-  // }
 }
