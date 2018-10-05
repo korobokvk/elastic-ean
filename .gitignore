@@ -6,14 +6,19 @@
 
 # dependencies
 /node_modules
+<<<<<<< 32a84765eba77defd5540483fbb59a41fedce126
 
 # builds
 /dist
+=======
+/bower_components
+>>>>>>> server well
 
 # IDEs and editors
 /.idea
 .project
 .classpath
+<<<<<<< 32a84765eba77defd5540483fbb59a41fedce126
 .c9/
 *.launch
 .settings/
@@ -25,6 +30,10 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+=======
+*.launch
+.settings/
+>>>>>>> server well
 
 # misc
 /.sass-cache

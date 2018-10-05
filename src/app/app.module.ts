@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -14,6 +13,7 @@ import { DataService } from "./data.service";
 import { DialogComponent } from './dialog/dialog.component';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +27,8 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     HttpModule,
     MdDialogModule,
     MdCardModule,
-    MdButtonModule
+    MdButtonModule,
+    HttpModule
   ],
   providers: [DataService, ViewportRuler],
   bootstrap: [AppComponent]

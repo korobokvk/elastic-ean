@@ -5,8 +5,7 @@ const elastic = require('../elasticsearch');
 
 router.get('/docs', (req, res, next) => {
     elastic.search().then(data => {
-        res.json(data.hits.hits);
-        //res.sendStatus(200);
+      res.json(data.hits.hits);
     }).catch(err => {
         console.error(err);
     })
