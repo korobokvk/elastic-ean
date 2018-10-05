@@ -23,7 +23,6 @@ export class DialogComponent implements OnInit {
     setTimeout(() => this.visible = false, 300);
   }
   public submitUser(data) {
-    console.log(data.value.id)
     data.value.lastChanges = moment().format('LLL');
     if (data.value.id !== null) {
       let dataObj = {};

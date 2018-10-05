@@ -29,7 +29,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   constructor(private _dataService: DataService, private fb: FormBuilder) {
     this._dataService.data$.asObservable().subscribe(data => {
-      console.log(data)
       this.configureData(data)
     });
 
