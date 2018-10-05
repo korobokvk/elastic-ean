@@ -11,9 +11,15 @@ router.get('/docs', (req, res, next) => {
     })
 });
 
+router.get('/docs/:id', (req, res, next) => {
+  elastic.searchById(req.params.id).then(data => {
+    res.json(data);
+  })
+});
+
 router.post('/docs', (req, res, next) => {
     elastic.addDocs(req.body).then(data => {
-        res.sendStatus(200);
+        res.json(data)
     }).catch(err => {
         console.log(err);
         res.sendStatus(500);
@@ -31,7 +37,7 @@ router.delete('/docs/:id', (req, res, next) => {
 
 router.put('/docs/:id', (req, res, next) => {
     elastic.addDocs(req.body, req.params.id).then(data => {
-        res.sendStatus(200);
+      res.json(data)
     }).catch(err => {
         console.log(err);
         res.sendStatus(500);
