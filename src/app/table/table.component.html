@@ -1,6 +1,44 @@
 <div style="text-align:center">
-  <app-dialog></app-dialog>
+  <button type="button" class="btn btn-warning table-button__create" (click)="modal.show(); addUser()">Add User</button>
+  <app-dialog #modal>
+    <div class="app-modal-header">
+      User preference
+    </div>
+    <div class="app-modal-body">
+      <form [formGroup]="userForm" (ngSubmit)="submitUser()">
+        <div>
+          <p>Name</p>
+          <input id="name" formControlName="userName" type="text">
+        </div>
+
+        <div>
+          <p>Surname</p>
+          <input type="text" id="surname" formControlName="userSurname">
+        </div>
+
+        <div>
+          <p>Email</p>
+          <input type="text" id="email" formControlName="userEmail">
+        </div>
+
+        <div>
+          <p>Phone Number</p>
+          <input type="text" id="phone" formControlName="phone">
+        </div>
+
+        <div>
+          <p>Date of Birth</p>
+          <input type="text" id="date" formControlName="dateOfBirth">
+        </div>
+      </form>
+    </div>
+    <div class="app-modal-footer">
+      <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
+      <button type="submit" class="btn btn-primary" (click)="modal.submitUser(userForm)">Save changes</button>
+    </div>
+  </app-dialog>
 </div>
+
 <div class="table_wrapper">
 
   <table cellspacing='0'>
@@ -11,7 +49,9 @@
       <th>Data Of Birth</th>
       <th>Phone Number</th>
       <th>Email</th>
-      <th>Lat Changes</th>
+      <th>Last Changes</th>
+      <th>Delete User</th>
+      <th>Edit User</th>
     </tr>
     </thead>
     <tbody>
@@ -23,7 +63,10 @@
       <td>{{data.details.userEmail}}</td>
       <td>{{data.details.lastChanges}}</td>
       <td>
-        <button (click)="delete(data.id)">Delete</button>
+        <button class="table-button__edit btn btn-primary" (click)="editUser(data); modal.show()">Edit</button>
+      </td>
+      <td>
+        <button class="table-button__delete btn btn-danger"  (click)="deleteUser(data.id)">Delete</button>
       </td>
     </tr>
     </tbody>

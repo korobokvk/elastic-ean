@@ -8,12 +8,27 @@
 /node_modules
 /bower_components
 
+
+# builds
+
 # IDEs and editors
 /.idea
 .project
 .classpath
 *.launch
 .settings/
+
+.c9/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
 
 # misc
 /.sass-cache
