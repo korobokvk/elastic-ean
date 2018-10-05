@@ -1,0 +1,32 @@
+<div style="text-align:center">
+  <app-dialog></app-dialog>
+</div>
+<div class="table_wrapper">
+
+  <table cellspacing='0'>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Data Of Birth</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Lat Changes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of userData">
+      <td>{{data.details.userName}}</td>
+      <td>{{data.details.userSurname}}</td>
+      <td>{{data.details.dateOfBirth}}</td>
+      <td>{{data.details.phone}}</td>
+      <td>{{data.details.userEmail}}</td>
+      <td>{{data.details.lastChanges}}</td>
+      <td>
+        <button (click)="delete(data.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
