@@ -5,13 +5,12 @@ import { HttpModule } from '@angular/http';
 import { MdDialogModule } from '@angular/material';
 import { MdCardModule } from '@angular/material';
 import { MdButtonModule } from '@angular/material';
-import { ViewportRuler } from "@angular/material/core/overlay/position/viewport-ruler"
-
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { DataService } from "./data.service";
 import { DialogComponent } from './dialog/dialog.component';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
+//import {ViewportRuler} from "@angular/material/typings/core/overlay/position/viewport-ruler";
 
 
 @NgModule({
@@ -30,7 +29,7 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     MdButtonModule,
     HttpModule
   ],
-  providers: [DataService, ViewportRuler],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

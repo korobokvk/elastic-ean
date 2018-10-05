@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-//import { MD_DIALOG_DATA } from '@angular/material';
-//import {MdDialogRef} from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MD_DIALOG_DATA, MdDialogRef } from "@angular/material"
 
 @Component({
   selector: 'app-my-dialog',
@@ -9,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(public thisDialogRef: MdDialogRef<MyDialogComponent>,
+              @Inject(MD_DIALOG_DATA) public data: string) { }
 
   ngOnInit() {
+  }
+
+  onCloseConfirm() {
+    this.thisDialogRef.close('Confirm');
+  }
+  onCloseCancel() {
+    this.thisDialogRef.close('Cancel');
   }
 
 }
