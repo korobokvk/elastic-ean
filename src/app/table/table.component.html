@@ -1,5 +1,5 @@
 <div style="text-align:center">
-  <button type="button" class="btn btn-warning table-button__create" (click)="modal.show()">Add User</button>
+  <button type="button" class="btn btn-warning table-button__create" (click)="modal.show(); addUser()">Add User</button>
   <app-dialog #modal>
     <div class="app-modal-header">
       User preference
@@ -62,7 +62,7 @@
       <td>{{data.details.userEmail}}</td>
       <td>{{data.details.lastChanges}}</td>
       <td>
-        <button class="table-button__edit btn btn-primary" (click)="editUser(data.id); modal.show()">Edit</button>
+        <button class="table-button__edit btn btn-primary" (click)="editUser(data); modal.show()">Edit</button>
       </td>
       <td>
         <button class="table-button__delete btn btn-danger"  (click)="deleteUser(data.id)">Delete</button>

@@ -59,15 +59,11 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   private configureData(data) {
-    console.log(data)
-
     const arr = this.userData.filter(value => {
       return value.id === data._id
     });
-    console.log(arr)
     if(arr.length > 0) {
       this.userData.splice(this.userData.indexOf(arr[0]), 1, this.buildDataObject(data));
-      console.log(this.userData)
     } else if(Array.isArray(data)) {
       data.forEach(value => {
         this.userData.push(this.buildDataObject(value));
@@ -91,9 +87,22 @@ export class TableComponent implements OnInit, OnDestroy {
     };
   }
 
-  private editUser(id) {
-    this.userForm.controls['id'].setValue(id);
+  private editUser(data) {
+    this.userForm.controls['userName'].setValue(data.details.userName);
+    this.userForm.controls['userSurname'].setValue(data.details.userSurname);
+    this.userForm.controls['userEmail'].setValue(data.details.userEmail);
+    this.userForm.controls['phone'].setValue(data.details.phone);
+    this.userForm.controls['dateOfBirth'].setValue(data.details.dateOfBirth);
+    this.userForm.controls['id'].setValue(data.id);
+  }
 
+  addUser() {
+    this.userForm.controls['id'].setValue(null);
+    this.userForm.controls['userName'].setValue(null);
+    this.userForm.controls['userSurname'].setValue(null);
+    this.userForm.controls['userEmail'].setValue(null);
+    this.userForm.controls['phone'].setValue(null);
+    this.userForm.controls['dateOfBirth'].setValue(null);
   }
   private deleteUser(id) {
     this._dataService.deleteData(id).subscribe(status => {

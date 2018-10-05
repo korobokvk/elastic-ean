@@ -23,6 +23,7 @@ export class DialogComponent implements OnInit {
     setTimeout(() => this.visible = false, 300);
   }
   public submitUser(data) {
+    console.log(data.value.id)
     data.value.lastChanges = moment().format('LLL');
     if (data.value.id !== null) {
       let dataObj = {};
@@ -35,12 +36,9 @@ export class DialogComponent implements OnInit {
         this._dataService.getLast(val.json()._id)
       });
     } else {
-      delete data.value.id;
-      if(!data.value.hasOwnProperty('id')) {
-        this._dataService.addData(data.value).subscribe(val => {
-          this._dataService.getLast(val.json()._id)
-        })
-      }
+      this._dataService.addData(data.value).subscribe(val => {
+        this._dataService.getLast(val.json()._id)
+      })
     }
   this.hide();
   }
