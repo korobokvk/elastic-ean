@@ -9,4 +9,4 @@ Elasticsearch
 ## Development server
 Run `npm install` `ng serve` `nodemon ./bin/www` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.  
 Also you can use ssr, for this you have to run `npm start` in this case it will be worked on `http://localhost:3000/`.  
-Not forgot to run you elaticsearch database 
+Not forgot to run you elaticsearch database and `npm install` first
