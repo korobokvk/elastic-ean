@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from "../data.service";
 import * as _ from 'lodash';
 import {FormGroup, FormBuilder, FormControl} from "@angular/forms"
+import { Validators } from '@angular/forms';
 
 
 interface usersDataInterface {
@@ -38,13 +39,26 @@ export class TableComponent implements OnInit, OnDestroy {
     this.userData = [];
     this.getData();
     this.userForm = this.fb.group({
-      userName: new FormControl(null),
-      userSurname: new FormControl(null),
-      userEmail: new FormControl(null),
-      phone: new FormControl(null),
-      dateOfBirth: new FormControl(null),
+      userName: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]+$/)
+      ]),
+      userSurname: new FormControl(null,  [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]+$/)
+      ]),
+      userEmail: new FormControl(null, [
+          Validators.required,
+          Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
+        ]),
+      phone: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(/\d/g)
+      ]),
+      dateOfBirth: new FormControl(null, Validators.required),
       id: new FormControl()
-    })
+    });
+    console.log(this.userForm)
   }
 
   ngOnDestroy() {
