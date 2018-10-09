@@ -8,33 +8,38 @@
       <form [formGroup]="userForm" (ngSubmit)="submitUser()">
         <div>
           <p>Name</p>
-          <input id="name" formControlName="userName" type="text">
+          <span class="form_validation_error" *ngIf="userForm.controls['userName'].invalid && userForm.controls['userName'].touched">*User name is required</span>
+          <input type="text" id="name" formControlName="userName" required>
         </div>
 
         <div>
           <p>Surname</p>
-          <input type="text" id="surname" formControlName="userSurname">
+          <span class="form_validation_error" *ngIf="userForm.controls['userSurname'].invalid && userForm.controls['userSurname'].touched">*User surname is required</span>
+          <input type="text" id="surname" formControlName="userSurname" required>
         </div>
 
         <div>
           <p>Email</p>
-          <input type="text" id="email" formControlName="userEmail">
+          <span class="form_validation_error" *ngIf="userForm.controls['userEmail'].invalid && userForm.controls['userEmail'].touched">*User email is required</span>
+          <input type="email" id="email" formControlName="userEmail" required>
         </div>
 
         <div>
           <p>Phone Number</p>
-          <input type="text" id="phone" formControlName="phone">
+          <span class="form_validation_error" *ngIf="userForm.controls['phone'].invalid && userForm.controls['phone'].touched">*User phone number is required</span>
+          <input type="number" id="phone" formControlName="phone" required>
         </div>
 
         <div>
           <p>Date of Birth</p>
-          <input type="text" id="date" formControlName="dateOfBirth">
+          <span class="form_validation_error" *ngIf="userForm.controls['dateOfBirth'].invalid && userForm.controls['dateOfBirth'].touched">*User birth date is required</span>
+          <input type="date" id="date" formControlName="dateOfBirth" required>
         </div>
       </form>
     </div>
     <div class="app-modal-footer">
       <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
-      <button type="submit" class="btn btn-primary" (click)="modal.submitUser(userForm)">Save changes</button>
+      <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary" (click)="modal.submitUser(userForm)">Save changes</button>
     </div>
   </app-dialog>
 </div>
@@ -55,7 +60,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of userData">
+    <tr *ngFor="let data of userData.slice().reverse()">
       <td>{{data.details.userName}}</td>
       <td>{{data.details.userSurname}}</td>
       <td>{{data.details.dateOfBirth}}</td>
