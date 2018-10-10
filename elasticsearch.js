@@ -21,10 +21,11 @@ async function createIndex(index) {
   }).then().catch(err => console.log(err));
 }
 
-async function addDocs(document) {
+async function addDocs(document, id) {
   return await elasticClient.index({
     index: 'users',
     type: 'usersInfo',
+    id: id || null,
     body: {
       userName: document.userName,
       userSurname: document.userSurname,
@@ -43,6 +44,15 @@ async function search() {
   })
 }
 exports.search = search;
+
+async function searchById(id) {
+  return await elasticClient.get({
+    index: 'users',
+    type: 'usersInfo',
+    id: id
+  })
+}
+exports.searchById = searchById;
 
 async function deleteIndex(id) {
   await elasticClient.delete({
