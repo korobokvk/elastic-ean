@@ -29,42 +29,43 @@ export class TableComponent implements OnInit, OnDestroy {
 
 
     constructor(private _dataService: DataService, private fb: FormBuilder) {
-        this._dataService.data$.asObservable().subscribe(data => {
+      this.userData = [];
+      this._dataService.data$.asObservable().subscribe(data => {
             this.configureData(data)
         });
 
     }
 
   ngOnInit() {
-    this.userData = [];
     this.getData();
-    this.userForm = this.fb.group({
-      userName: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z]+$/)
-      ]),
-      userSurname: new FormControl(null,  [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z]+$/)
-      ]),
-      userEmail: new FormControl(null, [
-          Validators.required,
-          Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
-        ]),
-      phone: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(/\d/g)
-      ]),
-      dateOfBirth: new FormControl(null, Validators.required),
-      id: new FormControl()
-    });
-    console.log(this.userForm)
+    this.getForm();
   }
 
     ngOnDestroy() {
         this._dataService.data$.unsubscribe()
     }
-
+    private getForm() {
+      this.userForm = this.fb.group({
+        userName: new FormControl(null, [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z]+$/)
+        ]),
+        userSurname: new FormControl(null,  [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z]+$/)
+        ]),
+        userEmail: new FormControl(null, [
+          Validators.required,
+          Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
+        ]),
+        phone: new FormControl(null, [
+          Validators.required,
+          Validators.pattern(/\d/g)
+        ]),
+        dateOfBirth: new FormControl(null, Validators.required),
+        id: new FormControl()
+      });
+    }
     private getData() {
         this._dataService.getData().subscribe((data) => {
             this.configureData(data)
