@@ -38,6 +38,14 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userData = [];
     this.getData();
+    this.getForm();
+  }
+
+  ngOnDestroy() {
+    this._dataService.data$.unsubscribe()
+  }
+
+  private getForm() {
     this.userForm = this.fb.group({
       userName: new FormControl(null, [
         Validators.required,
@@ -48,9 +56,9 @@ export class TableComponent implements OnInit, OnDestroy {
         Validators.pattern(/^[a-zA-Z]+$/)
       ]),
       userEmail: new FormControl(null, [
-          Validators.required,
-          Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
-        ]),
+        Validators.required,
+        Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
+      ]),
       phone: new FormControl(null, [
         Validators.required,
         Validators.pattern(/\d/g)
@@ -58,11 +66,6 @@ export class TableComponent implements OnInit, OnDestroy {
       dateOfBirth: new FormControl(null, Validators.required),
       id: new FormControl()
     });
-    console.log(this.userForm)
-  }
-
-  ngOnDestroy() {
-    this._dataService.data$.unsubscribe()
   }
 
   private getData() {
